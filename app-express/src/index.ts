@@ -11,6 +11,10 @@ const HOSTNAME = process.env.HOSTNAME || "http://localhost";
 // App express
 const app = express();
 
+// JSON
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Endpoint raiz
 app.get("/", (req, res) => {
   res.send("Hello World!!");
@@ -19,7 +23,7 @@ app.get("/", (req, res) => {
 // Cors
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "*"],
   })
 );
 

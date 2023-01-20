@@ -77,7 +77,7 @@ app.get('/', (req, res) => {
 
 // Cors
 app.use(cors({
-	origin: ['http://localhost:3000']
+	origin: ['http://localhost:3000','*']
 }))
 
 
@@ -95,4 +95,16 @@ app.listen(PORT, () => {
 
 ```bash
 yarn dev
+```
+
+## nodemon
+
+```bash
+yarn add -D nodemon
+```
+
+## sqlite 
+
+```bash
+yarn add sqlite3 @types/sqlite3
 ```
