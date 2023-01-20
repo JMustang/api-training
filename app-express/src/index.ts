@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import usersRouter from "./routers/user.router";
 
 // Porta do servidor
 const PORT = process.env.PORT || 4000;
@@ -21,6 +22,9 @@ app.use(
     origin: ["http://localhost:3000"],
   })
 );
+
+// Routers
+app.use("/api", usersRouter);
 
 // Resposta padrao para qualquer outra requisicao
 app.use((req, res) => {
