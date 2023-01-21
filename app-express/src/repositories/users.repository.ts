@@ -9,6 +9,11 @@ const usersRepository = {
       callback(this?.lastID);
     });
   },
+  readAll: (callback: (user: User[]) => void) => {
+    const sql = `SELECT * FROM users`;
+    const params: any[] = [];
+    database.all(sql, params, (_err, rows) => callback(rows));
+  },
 };
 
 export default usersRepository;

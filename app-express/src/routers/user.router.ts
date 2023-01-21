@@ -19,7 +19,7 @@ usersRouter.post("/users", (req, res) => {
 });
 
 usersRouter.get("/users", (req, res) => {
-  res.send("Le todos os usuario!");
+  usersRepository.readAll((users) => res.json(users));
 });
 
 usersRouter.get("/users/:id", (req, res) => {
