@@ -7,7 +7,7 @@ const SQL_USERS_CREATE = `
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         lastname TEXT,
-        job TEXT
+        working BOOLEAN
     )`;
 
 const database = new sqlite3.Database(CONN, (err) => {
