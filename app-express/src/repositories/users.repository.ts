@@ -11,8 +11,11 @@ const usersRepository = {
   },
   readAll: (callback: (user: User[]) => void) => {
     const sql = `SELECT * FROM users`;
-    const params: any[] = [];
-    database.all(sql, params, (_err, rows) => callback(rows));
+    database.all(sql, [], (_err, rows) => callback(rows || []));
+  },
+  readById: (id: number, callback: (user?: User) => void) => {
+    const sql = `SELECT * FROM users WHERE id = ?`;
+    database.get(sql, [id], (_err, rows) => callback(rows));
   },
 };
 

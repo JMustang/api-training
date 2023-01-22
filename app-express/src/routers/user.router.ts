@@ -24,7 +24,13 @@ usersRouter.get("/users", (req, res) => {
 
 usersRouter.get("/users/:id", (req, res) => {
   const id: number = +req.params.id;
-  res.send(`Le um usuario por ID: ${id}`);
+  usersRepository.readById(id, (users) => {
+    if (users) {
+      res.json(users);
+    } else {
+      res.status(404).send({ error: `User ${id} not found.` });
+    }
+  });
 });
 
 usersRouter.put("/users/:id", (req, res) => {
