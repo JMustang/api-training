@@ -35,7 +35,13 @@ usersRouter.get("/users/:id", (req, res) => {
 
 usersRouter.put("/users/:id", (req, res) => {
   const id: number = +req.params.id;
-  res.send(`Atualiza um usuario por ID: ${id}`);
+  usersRepository.update(id, req.body, (notFound) => {
+    if (notFound) {
+      res.status(404).send({ error: `User ${req.body}, not found` });
+    } else {
+      res.status(204).send({ message: `User ${req.body}, updated` });
+    }
+  });
 });
 
 usersRouter.delete("/users/:id", (req, res) => {
