@@ -46,7 +46,13 @@ usersRouter.put("/users/:id", (req, res) => {
 
 usersRouter.delete("/users/:id", (req, res) => {
   const id: number = +req.params.id;
-  res.send(`Deleta um usuario por ID: ${id}`);
+  usersRepository.delete(id, (notFound) => {
+    if (notFound) {
+      res.status(404).send({ error: `User ${id}, not found.` });
+    } else {
+      res.status(204).send({ error: `User ${id}, deleted.` });
+    }
+  });
 });
 
 export default usersRouter;

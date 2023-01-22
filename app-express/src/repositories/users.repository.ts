@@ -24,6 +24,13 @@ const usersRepository = {
       callback(this.changes === 0);
     });
   },
+  delete: (id: number, callback: (notFound: boolean) => void) => {
+    const sql = `DELETE FROM users WHERE id = ?`;
+    const params = [id];
+    database.run(sql, params, function (_err) {
+      callback(this.changes === 0);
+    });
+  },
 };
 
 export default usersRepository;
