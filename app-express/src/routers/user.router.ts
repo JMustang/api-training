@@ -11,7 +11,7 @@ usersRouter.post("/users", (req, res) => {
       res
         .status(201)
         .location(`/users/${id}`)
-        .send({ message: "Created successfully!" });
+        .send({ message: "Created successfully!", user: user });
     } else {
       res.status(400).send({ message: "User not created!", error: true });
     }
@@ -37,9 +37,9 @@ usersRouter.put("/users/:id", (req, res) => {
   const id: number = +req.params.id;
   usersRepository.update(id, req.body, (notFound) => {
     if (notFound) {
-      res.status(404).send({ error: `User ${req.body}, not found` });
+      res.status(404).json({ error: `User ${req.body}, not found` });
     } else {
-      res.status(204).send({ message: `User ${req.body}, updated` });
+      res.status(204).json({ message: `User ${req.body}, updated` });
     }
   });
 });

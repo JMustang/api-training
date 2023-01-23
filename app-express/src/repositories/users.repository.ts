@@ -18,7 +18,7 @@ const usersRepository = {
     database.get(sql, [id], (_err, rows) => callback(rows));
   },
   update: (id: number, user: User, callback: (notFound: boolean) => void) => {
-    const sql = `UPDATE users SET name = ? lastname = ? working = ? WHERE id = ?`;
+    const sql = `UPDATE users SET name = ?, lastname = ?, working = ? WHERE id = ?`;
     const params = [user.name, user.lastname, user.working, id];
     database.run(sql, params, function (_err) {
       callback(this.changes === 0);
